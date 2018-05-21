@@ -1,28 +1,36 @@
 import signal
 import time
 
+try:
+    from picamera import PiCamera
+except Exception:
+    pass
 
 class CoreService(object):
     _kill_now = False
+    _camera = None
 
 
     def __init__(self):
         signal.signal(signal.SIGINT, self.exit_gracefully)
         signal.signal(signal.SIGTERM, self.exit_gracefully)
 
+        try:
+            self._camera = PiCamera()
+        except Exception:
+            self._camera = None
+
     def start(self):
         while True:
 
 
-            try:
+            if self._camera:
                 print("[PEEK] Taking a photo..")
 
-                from picamera import PiCamera
-
-                camera = PiCamera()
                 camera.rotation = 90
                 camera.capture('/home/pi/projects/img.jpg')
-            except Exception:
+
+            else:
                 print("[PEEK] Skipping taking a photo. Not a supported OS.")
 
             time.sleep(10)
