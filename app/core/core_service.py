@@ -27,7 +27,7 @@ class CoreService(object):
             if self._camera:
                 print("[PEEK] Taking a photo..")
 
-                self._camera.rotation = 90
+                self._camera.rotation = -90
                 self._camera.capture('/home/pi/projects/img.jpg')
 
             else:
