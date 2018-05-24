@@ -1,5 +1,5 @@
 {
-    "service_name": "com.turing.peek",
+    "service-name": "com.turing.peek",
 
     "install": {
         "osx": "com.turing.peek.plist",
