@@ -1,11 +1,11 @@
 [Unit]
-Description=Turing Poe
+Description=Turing Service Peek Camera Control
 Wants=network.target
 After=network.target
 
 [Service]
 Type=simple
-ExecStart=/bin/bash /home/pi/projects/turing/services/poe/boot.sh
+ExecStart=/bin/bash /etc/turing/services/turing-peek/boot.sh
 Restart=on-abort
 
 [Install]
