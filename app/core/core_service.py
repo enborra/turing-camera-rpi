@@ -88,7 +88,7 @@ class CoreService(object):
                 break
 
     def _on_connect(self, client, userdata, flags, rc):
-        self.output('{"sender": "service_atlasph", "message": "Connected to GrandCentral."}')
+        self.output('{"sender": "service_camera_rpi", "message": "Connected to GrandCentral."}')
 
     def _on_message(self, client, userdata, msg):
         msg_struct = None
@@ -103,7 +103,7 @@ class CoreService(object):
         pass
 
     def _on_subscribe(self, mosq, obj, mid, granted_qos):
-        self.output('{"sender": "service_luna", "message": "Successfully subscribed to GrandCentral /system channel."}')
+        self.output('{"sender": "service_camera_rpi", "message": "Successfully subscribed to GrandCentral /system channel."}')
 
     def _on_log(self, mosq, obj, level, string):
         pass
@@ -153,7 +153,7 @@ class CoreService(object):
 
     def output(self, msg):
         if self._comm_client:
-            self._comm_client.publish('/system', msg)
+            self._comm_client.publish('/system/camera', msg)
 
         print(msg)
 
