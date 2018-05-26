@@ -1,8 +1,8 @@
 {
-    "service-name": "com.turing.peek",
+    "service-name": "com.turing.camera.rpi",
 
     "install": {
-        "osx": "com.turing.peek.plist",
-        "raspberry_pi": "com.turing.peek.service"
+        "osx": "com.turing.camera.rpi.plist",
+        "raspberry_pi": "com.turing.camera.rpi.service"
     }
 }

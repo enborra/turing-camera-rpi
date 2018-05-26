@@ -5,12 +5,12 @@ from core import CoreService
 c = CoreService()
 
 try:
-    print("[PEEK] Booting.")
+    print("[CAMERA-RPI] Booting.")
 
     c.start()
 
 except KeyboardInterrupt:
-    print("[PEEK] Shutting down.")
+    print("[CAMERA-RPI] Shutting down.")
 
     c.stop()
 

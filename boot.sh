@@ -12,11 +12,11 @@ install_requirements=false
 # If the install command-line param is null, go ahead with install of all
 # requirements.txt dependencies
 
-echo "[PEEK] Booting."
+echo "[CAMERA-RPI] Booting."
 cd "$PATH_APP"
 
 # Run the service
 
-echo "[PEEK] Starting service."
+echo "[CAMERA-RPI] Starting service."
 
 $PATH_BIN_PYTHON boot.py

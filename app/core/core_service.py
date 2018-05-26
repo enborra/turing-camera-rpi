@@ -25,13 +25,13 @@ class CoreService(object):
 
 
             if self._camera:
-                print("[PEEK] Taking a photo..")
+                print("[CAMERA-RPI] Taking a photo..")
 
                 self._camera.rotation = 180
                 self._camera.capture('/home/pi/projects/img.jpg')
 
             else:
-                print("[PEEK] Skipping taking a photo. Not a supported OS.")
+                print("[CAMERA-RPI] Skipping taking a photo. Not a supported OS.")
 
             time.sleep(10)
 

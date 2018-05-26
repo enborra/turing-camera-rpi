@@ -1,11 +1,11 @@
 [Unit]
-Description=Turing Service Peek Camera Control
+Description=Turing Camera RPI
 Wants=network.target
 After=network.target
 
 [Service]
 Type=simple
-ExecStart=/bin/bash /etc/turing/services/turing-peek/boot.sh
+ExecStart=/bin/bash /etc/turing/services/turing-camera-rpi/boot.sh
 Restart=on-abort
 
 [Install]

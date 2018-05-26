@@ -10,17 +10,17 @@
 		<true/>
 	</dict>
 	<key>Label</key>
-	<string>com.turing.peek</string>
+	<string>com.turing.camera.rpi</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/bin/bash</string>
-		<string>/Users/andres/projects/turing/services/peek/boot.sh</string>
+		<string>/etc/turing/services/turing-camera-rpi/boot.sh</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
 	<key>StandardErrorPath</key>
-	<string>/tmp/com.turing.peek.err</string>
+	<string>/tmp/com.turing.camera.rpi.err</string>
 	<key>StandardOutPath</key>
-	<string>/tmp/com.turing.peek.out</string>
+	<string>/tmp/com.turing.camera.rpi.out</string>
 </dict>
 </plist>
