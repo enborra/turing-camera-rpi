@@ -155,7 +155,7 @@ class CoreService(object):
         if self._comm_client:
             self._comm_client.publish('/system/camera', msg)
 
-        print(msg)
+        # print(msg)
 
     def stop(self):
         pass
