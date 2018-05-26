@@ -1,10 +1,16 @@
 import signal
 import time
 
+import io
+from PIL import Image
+import base64
+
+
 try:
     from picamera import PiCamera
 except Exception:
     pass
+
 
 class CoreService(object):
     _kill_now = False
@@ -25,10 +31,33 @@ class CoreService(object):
 
 
             if self._camera:
+                print("[CAMERA-RPI] Starting filestream.")
+
+                # Capture raw camera image and create a PIL image object
+
+                stream = io.BytesIO()
+
                 print("[CAMERA-RPI] Taking a photo..")
 
-                self._camera.rotation = 180
-                self._camera.capture('/home/pi/projects/img.jpg')
+                with picamera.PiCamera() as camera:
+                    camera.start_preview()
+                    time.sleep(2)
+                    camera.capture(stream, format='jpeg')
+
+                stream.seek(0)
+                image = Image.open(stream)
+
+                buffer = cStringIO.StringIO()
+                image.save(buffer, format='JPEG')
+                img_str = base64.b64encode(buffer.getvalue())
+
+                print('****\n' + img_str + '\n****')
+
+
+                # self._camera.rotation = 180
+                # self._camera.capture('/home/pi/projects/img.jpg')
+
+
 
             else:
                 print("[CAMERA-RPI] Skipping taking a photo. Not a supported OS.")
