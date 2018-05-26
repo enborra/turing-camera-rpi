@@ -4,6 +4,7 @@ import time
 import io
 from PIL import Image
 import base64
+import cStringIO
 
 
 try:
