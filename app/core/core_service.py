@@ -27,6 +27,9 @@ class CoreService(object):
 
     _camera = None
 
+    _system_channel = '/system'
+    _data_channel = '/camera/rpi'
+
 
     def __init__(self):
         signal.signal(signal.SIGINT, self.exit_gracefully)
@@ -39,7 +42,7 @@ class CoreService(object):
 
     def start(self):
         self._comm_client = mqtt.Client(
-            client_id="service_atlasph",
+            client_id="service_camera_rpi",
             clean_session=True
         )
 
@@ -77,7 +80,7 @@ class CoreService(object):
 
                 # print('****\n' + img_str + '\n****')
 
-                self.output(img_str)
+                self.output(img_str, self._data_channel)
 
             else:
                 print("[CAMERA-RPI] Skipping taking a photo. Not a supported OS.")
@@ -151,11 +154,9 @@ class CoreService(object):
             finally:
                 self._thread_lock.release()
 
-    def output(self, msg):
+    def output(self, msg, channel=_system_channel):
         if self._comm_client:
-            self._comm_client.publish('/system/camera', msg)
-
-        # print(msg)
+            self._comm_client.publish(channel, msg)
 
     def stop(self):
         pass
