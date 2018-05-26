@@ -39,10 +39,9 @@ class CoreService(object):
 
                 print("[CAMERA-RPI] Taking a photo..")
 
-                with PiCamera() as camera:
-                    camera.start_preview()
-                    time.sleep(2)
-                    camera.capture(stream, format='jpeg')
+                self._camera.start_preview()
+                time.sleep(2)
+                self._camera.capture(stream, format='jpeg')
 
                 stream.seek(0)
                 image = Image.open(stream)
