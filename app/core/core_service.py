@@ -67,20 +67,24 @@ class CoreService(object):
 
                 print("[CAMERA-RPI] Taking a photo..")
 
-                self._camera.start_preview()
-                time.sleep(2)
-                self._camera.capture(stream, format='jpeg')
+                try:
+                    self._camera.start_preview()
+                    time.sleep(2)
+                    self._camera.capture(stream, format='jpeg')
 
-                stream.seek(0)
-                image = Image.open(stream)
+                    stream.seek(0)
+                    image = Image.open(stream)
 
-                buffer = cStringIO.StringIO()
-                image.save(buffer, format='JPEG')
-                img_str = base64.b64encode(buffer.getvalue())
+                    buffer = cStringIO.StringIO()
+                    image.save(buffer, format='JPEG')
+                    img_str = base64.b64encode(buffer.getvalue())
 
-                # print('****\n' + img_str + '\n****')
+                    # print('****\n' + img_str + '\n****')
 
-                self.output(img_str, self._data_channel)
+                    self.output(img_str, self._data_channel)
+
+                except Exception as e:
+                    print("[TURING-CAMERA-RPI] Had an issue capturing a photo: %s" % e)
 
             else:
                 print("[CAMERA-RPI] Skipping taking a photo. Not a supported OS.")
