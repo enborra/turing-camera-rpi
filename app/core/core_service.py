@@ -64,6 +64,9 @@ class CoreService(object):
                 # Capture raw camera image and create a PIL image object
 
                 stream = io.BytesIO()
+                image = None
+                img_str = None
+                buffer = None
 
                 print("[CAMERA-RPI] Taking a photo..")
 
@@ -81,10 +84,14 @@ class CoreService(object):
 
                     # print('****\n' + img_str + '\n****')
 
+                except Exception as e:
+                    print("[TURING-CAMERA-RPI] Had an issue capturing a photo: %s" % e)
+
+                try:
                     self.output(img_str, self._data_channel)
 
                 except Exception as e:
-                    print("[TURING-CAMERA-RPI] Had an issue capturing a photo: %s" % e)
+                    print("[TURING-CAMERA-RPI] Couldn't publish to comms")
 
             else:
                 print("[CAMERA-RPI] Skipping taking a photo. Not a supported OS.")
