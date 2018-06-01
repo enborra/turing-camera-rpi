@@ -35,14 +35,6 @@ class CoreService(object):
         signal.signal(signal.SIGINT, self.exit_gracefully)
         signal.signal(signal.SIGTERM, self.exit_gracefully)
 
-        try:
-            self._camera = PiCamera()
-
-            PiCamera.CAPTURE_TIMEOUT = 10
-
-        except Exception:
-            self._camera = None
-
     def start(self):
         self._comm_client = mqtt.Client(
             client_id="service_camera_rpi",
@@ -61,6 +53,14 @@ class CoreService(object):
         self._thread_comms.start()
 
         while True:
+            try:
+                self._camera = PiCamera()
+
+                PiCamera.CAPTURE_TIMEOUT = 10
+
+            except Exception:
+                self._camera = None
+
             if self._camera:
                 print("[CAMERA-RPI] Starting filestream.")
 
