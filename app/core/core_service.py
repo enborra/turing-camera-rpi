@@ -37,6 +37,9 @@ class CoreService(object):
 
         try:
             self._camera = PiCamera()
+
+            PiCamera.CAPTURE_TIMEOUT = 10
+
         except Exception:
             self._camera = None
 
