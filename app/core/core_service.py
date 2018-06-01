@@ -85,10 +85,12 @@ class CoreService(object):
                     image.save(buffer, format='JPEG')
                     img_str = base64.b64encode(buffer.getvalue())
 
-                    # print('****\n' + img_str + '\n****')
-
                 except Exception as e:
                     print("[TURING-CAMERA-RPI] Had an issue capturing a photo: %s" % e)
+
+                finally:
+                    self._camera.stop_preview()
+                    self._camera.close()
 
                 try:
                     self.output(img_str, self._data_channel)
