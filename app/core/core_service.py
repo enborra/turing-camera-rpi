@@ -55,13 +55,13 @@ class CoreService(object):
 
         try:
             self._camera = PiCamera()
-            self._camera.iso = 100
-            sleep(2) # give lens time to adjust
-            self._camera.shutter_speed = self._camera.exposure_speed
-            self._camera.exposure_mode = 'off'
-            g = self._camera.awb_gains
-            self._camera.awb_mode = 'off'
-            self.awb_gains = g
+            # self._camera.iso = 100
+            # sleep(2) # give lens time to adjust
+            # self._camera.shutter_speed = self._camera.exposure_speed
+            # self._camera.exposure_mode = 'off'
+            # g = self._camera.awb_gains
+            # self._camera.awb_mode = 'off'
+            # self.awb_gains = g
 
             PiCamera.CAPTURE_TIMEOUT = 10
 
