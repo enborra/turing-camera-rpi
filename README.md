@@ -3,10 +3,10 @@
 ## INSTALLATION STEPS FOR SCRIPTING  
 
 ### On MacOS
-`sudo apt-get install libjpeg-dev`  
-`sudo apt-get install zlib1g-dev`  
-`sudo apt-get install libpng-dev`  
-`sudo pip install pillow`  
+1. `sudo apt-get install libjpeg-dev`  
+2. `sudo apt-get install zlib1g-dev`  
+3. `sudo apt-get install libpng-dev`  
+4. `sudo pip install pillow`  
 
 ### On RaspberryPi
 `sudo apt update`  
