@@ -52,15 +52,22 @@ class CoreService(object):
         self._thread_comms.setDaemon(True)
         self._thread_comms.start()
 
+        try:
+            self._camera = PiCamera()
+            self._camera.iso = 200
+            sleep(2) # give lens time to adjust
+            self._camera.shutter_speed = camera.exposure_speed
+            self._camera.exposure_mode = 'off'
+            g = self._camera.awb_gains
+            self._camera.awb_mode = 'off'
+            self.awb_gains = g            
+
+            PiCamera.CAPTURE_TIMEOUT = 10
+
+        except Exception:
+            self._camera = None
+
         while True:
-            try:
-                self._camera = PiCamera()
-
-                PiCamera.CAPTURE_TIMEOUT = 10
-
-            except Exception:
-                self._camera = None
-
             if self._camera:
                 print("[CAMERA-RPI] Starting filestream.")
 
@@ -74,7 +81,7 @@ class CoreService(object):
                 print("[CAMERA-RPI] Taking a photo..")
 
                 try:
-                    self._camera.start_preview()
+                    # self._camera.start_preview()
                     time.sleep(2)
                     self._camera.capture(stream, format='jpeg')
 
