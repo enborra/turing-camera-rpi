@@ -58,7 +58,7 @@ class CoreService(object):
             # self._camera.iso = 100
             # sleep(2) # give lens time to adjust
             # self._camera.shutter_speed = self._camera.exposure_speed
-            self._camera.shutter_speed = 900000
+            self._camera.shutter_speed = 100000
             # self._camera.exposure_mode = 'off'
             # g = self._camera.awb_gains
             # self._camera.awb_mode = 'off'
