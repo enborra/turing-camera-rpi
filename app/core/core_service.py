@@ -58,7 +58,7 @@ class CoreService(object):
             # self._camera.iso = 100
             # sleep(2) # give lens time to adjust
             # self._camera.shutter_speed = self._camera.exposure_speed
-            self._camera.shutter_speed = 100000
+            self._camera.shutter_speed = 200000
             # self._camera.exposure_mode = 'off'
             # g = self._camera.awb_gains
             # self._camera.awb_mode = 'off'
@@ -98,10 +98,6 @@ class CoreService(object):
                 except Exception as e:
                     print("[TURING-CAMERA-RPI] Had an issue capturing a photo: %s" % e)
 
-                finally:
-                    self._camera.stop_preview()
-                    self._camera.close()
-
                 try:
                     self.output(img_str, self._data_channel)
 
@@ -114,6 +110,7 @@ class CoreService(object):
             time.sleep(10)
 
             if self._kill_now:
+                self._camera.close()
                 break
 
     def _on_connect(self, client, userdata, flags, rc):
