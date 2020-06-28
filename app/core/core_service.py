@@ -60,12 +60,13 @@ class CoreService(object):
             self._camera.exposure_mode = 'off'
             g = self._camera.awb_gains
             self._camera.awb_mode = 'off'
-            self.awb_gains = g            
+            self.awb_gains = g
 
             PiCamera.CAPTURE_TIMEOUT = 10
 
-        except Exception:
+        except Exception as e:
             self._camera = None
+            print(e)
 
         while True:
             if self._camera:
