@@ -60,7 +60,7 @@ class CoreService(object):
             # self._camera.shutter_speed = self._camera.exposure_speed
             # self._camera.exposure_mode = 'off'
             # g = self._camera.awb_gains
-            # self._camera.awb_mode = 'off'
+            self._camera.awb_mode = 'off'
             # self.awb_gains = g
 
             PiCamera.CAPTURE_TIMEOUT = 10
