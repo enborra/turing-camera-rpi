@@ -29,7 +29,7 @@ class CoreService(object):
     _camera = None
 
     _system_channel = '/system'
-    _data_channel = '/camera/rpi'
+    _data_channel = '/camera/frames'
 
 
     def __init__(self):
