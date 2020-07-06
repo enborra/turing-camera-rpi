@@ -63,11 +63,11 @@ class CoreService(object):
                 self._camera.awb_mode = 'cloudy'
                 self._camera.iso = 100
 
-            PiCamera.CAPTURE_TIMEOUT = 10
+                PiCamera.CAPTURE_TIMEOUT = 10
 
-        except Exception as e:
-            self._camera = None
-            print(e)
+            except Exception as e:
+                self._camera = None
+                print(e)
 
         while True:
             if self._camera:
