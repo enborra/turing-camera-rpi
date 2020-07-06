@@ -1,3 +1,4 @@
+from time import sleep
 import threading
 import json
 import paho.mqtt.client as mqtt
@@ -28,7 +29,7 @@ class CoreService(object):
     _camera = None
 
     _system_channel = '/system'
-    _data_channel = '/camera/rpi'
+    _data_channel = '/camera/frames'
 
 
     def __init__(self):
@@ -62,11 +63,13 @@ class CoreService(object):
                 self._camera.awb_mode = 'cloudy'
                 self._camera.iso = 100
 
-                PiCamera.CAPTURE_TIMEOUT = 10
+            PiCamera.CAPTURE_TIMEOUT = 10
 
-            except Exception:
-                self._camera = None
+        except Exception as e:
+            self._camera = None
+            print(e)
 
+        while True:
             if self._camera:
                 print("[CAMERA-RPI] Starting filestream.")
 
@@ -92,10 +95,6 @@ class CoreService(object):
                 except Exception as e:
                     print("[TURING-CAMERA-RPI] Had an issue capturing a photo: %s" % e)
 
-                finally:
-                    self._camera.stop_preview()
-                    self._camera.close()
-
                 try:
                     self.output(img_str, self._data_channel)
 
@@ -108,6 +107,7 @@ class CoreService(object):
             time.sleep(10)
 
             if self._kill_now:
+                self._camera.close()
                 break
 
     def _on_connect(self, client, userdata, flags, rc):
