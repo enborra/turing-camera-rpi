@@ -55,7 +55,7 @@ class CoreService(object):
 
         try:
             self._camera = PiCamera()
-            self._camera.resolution = (1280,720)
+            self._camera.resolution = (720,480)
             self._camera.contrast = 0
             self._camera.brightness = 50
             self._camera.exposure_mode = 'backlight'
