@@ -55,6 +55,12 @@ class CoreService(object):
         while True:
             try:
                 self._camera = PiCamera()
+                self._camera.resolution = (1280,720)
+                self._camera.contrast = 0
+                self._camera.brightness = 50
+                self._camera.exposure_mode = 'backlight'
+                self._camera.awb_mode = 'cloudy'
+                self._camera.iso = 100
 
                 PiCamera.CAPTURE_TIMEOUT = 10
 
@@ -74,8 +80,6 @@ class CoreService(object):
                 print("[CAMERA-RPI] Taking a photo..")
 
                 try:
-                    self._camera.start_preview()
-                    time.sleep(2)
                     self._camera.capture(stream, format='jpeg')
 
                     stream.seek(0)
