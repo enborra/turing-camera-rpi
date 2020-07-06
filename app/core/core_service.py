@@ -53,21 +53,20 @@ class CoreService(object):
         self._thread_comms.setDaemon(True)
         self._thread_comms.start()
 
-        while True:
-            try:
-                self._camera = PiCamera()
-                self._camera.resolution = (1280,720)
-                self._camera.contrast = 0
-                self._camera.brightness = 50
-                self._camera.exposure_mode = 'backlight'
-                self._camera.awb_mode = 'cloudy'
-                self._camera.iso = 100
+        try:
+            self._camera = PiCamera()
+            self._camera.resolution = (1280,720)
+            self._camera.contrast = 0
+            self._camera.brightness = 50
+            self._camera.exposure_mode = 'backlight'
+            self._camera.awb_mode = 'cloudy'
+            self._camera.iso = 100
 
-                PiCamera.CAPTURE_TIMEOUT = 10
+            PiCamera.CAPTURE_TIMEOUT = 10
 
-            except Exception as e:
-                self._camera = None
-                print(e)
+        except Exception as e:
+            self._camera = None
+            print(e)
 
         while True:
             if self._camera:
